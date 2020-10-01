@@ -7,3 +7,12 @@
 [submodule "FreeRTOS/Test/CMock/CMock"]
 	path = FreeRTOS/Test/CMock/CMock
 	url = https://github.com/ThrowTheSwitch/CMock.git
+[submodule "FreeRTOS-Plus/Source/application_protocols/coreJSON"]
+	path = FreeRTOS-Plus/Source/application_protocols/coreJSON
+	url = https://github.com/FreeRTOS/coreJSON
+[submodule "FreeRTOS-Plus/Source/application_protocols/coreMQTT"]
+	path = FreeRTOS-Plus/Source/application_protocols/coreMQTT
+	url = https://github.com/FreeRTOS/coreMQTT
+[submodule "FreeRTOS-Plus/Source/aws/device-shadow-for-aws-iot-embedded-sdk"]
+	path = FreeRTOS-Plus/Source/aws/device-shadow-for-aws-iot-embedded-sdk
+	url = https://github.com/aws/device-shadow-for-aws-iot-embedded-sdk
