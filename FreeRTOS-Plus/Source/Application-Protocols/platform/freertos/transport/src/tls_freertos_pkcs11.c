@@ -143,9 +143,9 @@ static TlsTransportStatus_t initMbedtls( void );
  *
  * @return Zero on success.
  */
-static int generateRandomBytes( void * pvCtx,
-                                unsigned char * pucRandom,
-                                size_t xRandomLength );
+static int32_t generateRandomBytes( void * pvCtx,
+                                    unsigned char * pucRandom,
+                                    size_t xRandomLength );
 
 /**
  * @brief Helper for reading the specified certificate object, if present,
@@ -187,16 +187,16 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx );
  *
  * @return Zero on success.
  */
-static int privateKeySigningCallback( void * pvContext,
-                                      mbedtls_md_type_t xMdAlg,
-                                      const unsigned char * pucHash,
-                                      size_t xHashLen,
-                                      unsigned char * pucSig,
-                                      size_t * pxSigLen,
-                                      int ( * piRng )( void *,
-                                                       unsigned char *,
-                                                       size_t ),
-                                      void * pvRng );
+static int32_t privateKeySigningCallback( void * pvContext,
+                                          mbedtls_md_type_t xMdAlg,
+                                          const unsigned char * pucHash,
+                                          size_t xHashLen,
+                                          unsigned char * pucSig,
+                                          size_t * pxSigLen,
+                                          int32_t ( * piRng )( void *,
+                                                               unsigned char *,
+                                                               size_t ),
+                                          void * pvRng );
 
 
 /*-----------------------------------------------------------*/
@@ -234,7 +234,7 @@ static TlsTransportStatus_t tlsSetup( NetworkContext_t * pNetworkContext,
                                       const NetworkCredentials_t * pNetworkCredentials )
 {
     TlsTransportStatus_t returnStatus = TLS_TRANSPORT_SUCCESS;
-    int mbedtlsError = 0;
+    int32_t mbedtlsError = 0;
     CK_RV xResult = CKR_OK;
 
     configASSERT( pNetworkContext != NULL );
@@ -453,9 +453,9 @@ static TlsTransportStatus_t initMbedtls( void )
 
 /*-----------------------------------------------------------*/
 
-static int generateRandomBytes( void * pvCtx,
-                                unsigned char * pucRandom,
-                                size_t xRandomLength )
+static int32_t generateRandomBytes( void * pvCtx,
+                                    unsigned char * pucRandom,
+                                    size_t xRandomLength )
 {
     /* Must cast from void pointer to conform to mbed TLS API. */
     SSLContext_t * pxCtx = ( SSLContext_t * ) pvCtx;
@@ -657,19 +657,19 @@ static CK_RV initializeClientKeys( SSLContext_t * pxCtx )
 
 /*-----------------------------------------------------------*/
 
-static int privateKeySigningCallback( void * pvContext,
-                                      mbedtls_md_type_t xMdAlg,
-                                      const unsigned char * pucHash,
-                                      size_t xHashLen,
-                                      unsigned char * pucSig,
-                                      size_t * pxSigLen,
-                                      int ( * piRng )( void *,
-                                                       unsigned char *,
-                                                       size_t ),
-                                      void * pvRng )
+static int32_t privateKeySigningCallback( void * pvContext,
+                                          mbedtls_md_type_t xMdAlg,
+                                          const unsigned char * pucHash,
+                                          size_t xHashLen,
+                                          unsigned char * pucSig,
+                                          size_t * pxSigLen,
+                                          int32_t ( * piRng )( void *,
+                                                               unsigned char *,
+                                                               size_t ),
+                                          void * pvRng )
 {
     CK_RV xResult = CKR_OK;
-    int lFinalResult = 0;
+    int32_t lFinalResult = 0;
     SSLContext_t * pxTLSContext = ( SSLContext_t * ) pvContext;
     CK_MECHANISM xMech = { 0 };
     CK_BYTE xToBeSigned[ 256 ];
